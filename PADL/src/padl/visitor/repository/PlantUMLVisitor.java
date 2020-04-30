@@ -2,11 +2,10 @@ package padl.visitor.repository;
 
 import padl.kernel.*;
 import padl.visitor.IWalker;
-import pom.metrics.IUnaryMetric;
-import pom.metrics.MetricsRepository;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 public class PlantUMLVisitor implements IWalker {
 
@@ -24,7 +23,7 @@ public class PlantUMLVisitor implements IWalker {
 
     @Override
     public void close(IClass iclass) {
-// TODO Auto-generated method stub
+        // TODO Auto-generated method stub
         for (String s : functions) {
             result = result+"\r\n" + iclass.getDisplayName()+ " : " + s + "()";
         }
@@ -42,7 +41,8 @@ public class PlantUMLVisitor implements IWalker {
         for (String cmp : comps) {
             result = result+"\r\n" + iclass.getDisplayName() + " *-- " + cmp ;
         }
-//clearing all the arraylists
+
+        //clear all
         functions.clear();
         relatedObjects.clear();
         attributes.clear();
@@ -51,72 +51,72 @@ public class PlantUMLVisitor implements IWalker {
     }
     @Override
     public void close(IAbstractModel anAbstractModel) {
-// TODO Auto-generated method stub
+        // TODO Auto-generated method stub
     }
     @Override
     public void close(IConstructor aConstructor) {
-// TODO Auto-generated method stub
+        // TODO Auto-generated method stub
     }
     @Override
     public void close(IDelegatingMethod aDelegatingMethod) {
-// TODO Auto-generated method stub
+        // TODO Auto-generated method stub
     }
     @Override
     public void close(IGetter aGetter) {
-// TODO Auto-generated method stub
+        // TODO Auto-generated method stub
     }
     @Override
     public void close(IGhost aGhost) {
-// TODO Auto-generated method stub
+        // TODO Auto-generated method stub
     }
     @Override
     public void close(IInterface anInterface) {
-// TODO Auto-generated method stub
+        // TODO Auto-generated method stub
     }
     @Override
     public void close(IMemberClass aMemberClass) {
-// TODO Auto-generated method stub
+        // TODO Auto-generated method stub
     }
     @Override
     public void close(IMemberGhost aMemberGhost) {
-// TODO Auto-generated method stub
+        // TODO Auto-generated method stub
     }
     @Override
     public void close(IMemberInterface aMemberInterface) {
-// TODO Auto-generated method stub
+        // TODO Auto-generated method stub
     }
     @Override
     public void close(IMethod aMethod) {
-// TODO Auto-generated method stub
+        // TODO Auto-generated method stub
     }
     @Override
     public void close(IPackage aPackage) {
-// TODO Auto-generated method stub
+        // TODO Auto-generated method stub
     }
     @Override
     public void close(IPackageDefault aPackage) {
-// TODO Auto-generated method stub
+        // TODO Auto-generated method stub
     }
     @Override
     public void close(ISetter aSetter) {
-// TODO Auto-generated method stub
+        // TODO Auto-generated method stub
     }
     @Override
     public String getName() {
-// TODO Auto-generated method stub
+        // TODO Auto-generated method stub
         return null;
     }
     @Override
     public void open(IAbstractModel anAbstractModel) {
-// TODO Auto-generated method stub
+        // TODO Auto-generated method stub
     }
 
 
     @Override
     public void open(IClass iclass) {
-// TODO Auto-generated method stub
+        // TODO Auto-generated method stub
 
-//clearing the arraylist
+        //clearing the arraylist
         functions.clear();
         relatedObjects.clear();
         attributes.clear();
@@ -131,11 +131,9 @@ public class PlantUMLVisitor implements IWalker {
     }
 
 
-
-
     @Override
     public void open(IConstructor aConstructor) {
-// TODO Auto-generated method stub
+        // TODO Auto-generated method stub
     }
     @Override
     public void open(IDelegatingMethod aDelegatingMethod) {
@@ -148,118 +146,127 @@ public class PlantUMLVisitor implements IWalker {
     }
     @Override
     public void open(IGhost aGhost) {
-// TODO Auto-generated method stub
+        // TODO Auto-generated method stub
     }
     @Override
     public void open(IInterface anInterface) {
-// TODO Auto-generated method stub
-        result= result +"interface "+anInterface.getDisplayName();
+        // TODO Auto-generated method stub
+        result= result +"\ninterface "+anInterface.getDisplayName() + "\n";
     }
     @Override
     public void open(IMemberClass aMemberClass) {
-// TODO Auto-generated method stub
+        // TODO Auto-generated method stub
     }
     @Override
     public void open(IMemberGhost aMemberGhost) {
-// TODO Auto-generated method stub
+        // TODO Auto-generated method stub
     }
     @Override
     public void open(IMemberInterface aMemberInterface) {
-// TODO Auto-generated method stub
+        // TODO Auto-generated method stub
     }
     @Override
     public void open(IMethod aMethod) {
-// TODO Auto-generated method stub
-//result=result + "->"+ aMethod.getDisplayName() ;
+        // TODO Auto-generated method stub
         functions.add(aMethod.getDisplayName());
     }
     @Override
     public void open(IPackage aPackage) {
-// TODO Auto-generated method stub
+        // TODO Auto-generated method stub
     }
     @Override
     public void open(IPackageDefault aPackage) {
-// TODO Auto-generated method stub
+        // TODO Auto-generated method stub
     }
     @Override
     public void open(ISetter aSetter) {
-// TODO Auto-generated method stub
+        // TODO Auto-generated method stub
         functions.add(aSetter.getDisplayName());
     }
     @Override
     public void reset() {
-// TODO Auto-generated method stub
+        // TODO Auto-generated method stub
     }
     @Override
     public void unknownConstituentHandler(String aCalledMethodName, IConstituent aConstituent) {
-// TODO Auto-generated method stub
+        // TODO Auto-generated method stub
     }
     @Override
     public void visit(IAggregation anAggregation) {
-// TODO Auto-generated method stub
+        // TODO Auto-generated method stub
         IFirstClassEntity firstClass = anAggregation.getTargetEntity();
         aggregation_relations.add(firstClass.getDisplayName());
-        if(!(firstClass instanceof IGhost))
-        {
-            aggregation_relations.add(firstClass.getDisplayName());
-        }
     }
     @Override
     public void visit(IAssociation anAssociation) {
-// TODO Auto-generated method stub
+        // TODO Auto-generated method stub
         IFirstClassEntity firstClass= anAssociation.getTargetEntity();
         relatedObjects.add(firstClass.getDisplayName());
-        relatedObjects.add(firstClass.getDisplayName());
-        if(!(firstClass instanceof IGhost))
-            relatedObjects.add(firstClass.getDisplayName());
     }
     @Override
     public void visit(IComposition aComposition) {
-// TODO Auto-generated method stub
+        // TODO Auto-generated method stub
         IFirstClassEntity firstClass= aComposition.getTargetEntity();
         comps.add(firstClass.getDisplayName());
-        if(!(firstClass instanceof IGhost))
-            comps.add(firstClass.getDisplayName());
     }
     @Override
     public void visit(IContainerAggregation aContainerAggregation) {
-// TODO Auto-generated method stub
+        // TODO Auto-generated method stub
     }
     @Override
     public void visit(IContainerComposition aContainerComposition) {
-// TODO Auto-generated method stub
+        // TODO Auto-generated method stub
     }
     @Override
     public void visit(ICreation aCreation) {
-// TODO Auto-generated method stub
+        // TODO Auto-generated method stub
     }
     @Override
     public void visit(IField aField) {
-// TODO Auto-generated method stub
+        // TODO Auto-generated method stub
         attributes.add(aField.getDisplayName());
     }
     @Override
     public void visit(IMethodInvocation aMethodInvocation) {
-// TODO Auto-generated method stub
+        // TODO Auto-generated method stub
     }
     @Override
     public void visit(IParameter aParameter) {
-// TODO Auto-generated method stub
+        // TODO Auto-generated method stub
     }
     @Override
     public void visit(IPrimitiveEntity aPrimitiveEntity) {
-// TODO Auto-generated method stub
+        // TODO Auto-generated method stub
     }
+
     @Override
     public void visit(IUseRelationship aUse) {
         IFirstClassEntity firstClassEntity = aUse.getTargetEntity();
 
-
-// TODO Auto-generated method stub
     }
+
+    public void setFinalResult(){
+        String[] res = this.result.split("\n");
+        List<String> classes = new ArrayList<>();
+        for(String s : res){
+            if(s.startsWith("class")){
+                classes.add(s.split(" ")[1]);
+            }
+        }
+        this.result += "\n";
+
+        for(String s : classes){
+            for(int i = classes.indexOf(s)+1; i < classes.size() ; i++){
+                this.result += s + " <|-- " + classes.get(i) + "\n";
+            }
+        }
+
+    }
+
     @Override
     public Object getResult() {
-// TODO Auto-generated method stub
+        // TODO Auto-generated method stub
+        setFinalResult();
         this.result = this.result + "\n@enduml";
         return this.result;
     }
